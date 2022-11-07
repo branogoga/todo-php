@@ -1,0 +1,64 @@
+version: '3.3'
+
+networks:
+  internal_network:
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: '${APP_NAME}-server'
+    ports:
+      - '${APP_PORT}:80'
+    working_dir: /var/www/html
+    environment:
+      - 'DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASS}@db_server:3306/${MYSQL_DB}?serverVersion=10.5'
+    depends_on:
+      - db
+    networks:
+      - internal_network
+
+  db:
+    image: mariadb:10.3.29
+    container_name: '${APP_NAME}-db'
+    restart: always
+    ports:
+      - '${DB_PORT}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASS}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASS}'
+      MYSQL_DATABASE: '${MYSQL_DB}'
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+      interval: 5s
+      retries: 5
+    networks:
+      - internal_network
+
+  adminer:
+    image: adminer
+    depends_on: 
+      - db
+    restart: always
+    ports:
+      - '${APP_DB_ADMINER_PORT}:8080'
+    networks:
+      - internal_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports: 
+      - '${APP_DB_PHPMYADMIN_PORT}:80'
+    restart: always
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+    networks:
+      - internal_network
+volumes:
+  db_data:

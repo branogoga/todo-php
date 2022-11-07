@@ -1,0 +1,10 @@
+AddType application/x-httpd-php .php4
+DirectoryIndex index.html index.php index.php5 index.htm default.htm default.html
+AddType application/x-httpd-php .php
+php_flag short_open_tag 0
+AddType application/x-httpd-php .php52
+
+deny from 192.99.20.14
+deny from 192.99.150.87
+deny from 192.99.44.117
+deny from 192.99.200.18
