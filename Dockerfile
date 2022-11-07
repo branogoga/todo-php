@@ -14,6 +14,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Copy source
 COPY . /var/www/html
+RUN chmod -R a+rw /var/www/html/temp /var/www/html/log
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

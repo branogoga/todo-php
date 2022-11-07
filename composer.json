@@ -32,7 +32,7 @@
         }
     },
     "autoload": {
-        "classmap": ["www/app"]
+        "classmap": ["app"]
     },
     "extra": {
         "phpstan": {

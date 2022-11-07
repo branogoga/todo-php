@@ -14,5 +14,9 @@ Template of simple PHP web application running in Apache.
 
 `docker-compose down`
 
+### Rebuild after changes
+
+`docker-compose up -d --build`
+
 ### Settings
 Ports and DB password can be found / changed in `.env` file.
