@@ -10,19 +10,18 @@ use Nette;
 
 final class HomepagePresenter extends Nette\Application\UI\Presenter
 {
-	public function __construct()
+    private \Dibi\Connection $database;
+
+	public function __construct(\Dibi\Connection $database)
 	{
+        $this->database = $database;
 	}
 
 
 	public function renderDefault(): void
 	{
-        $host = 'db';
-        $user = 'app_user';
-        $pass = 't3rceS';
-        $conn = new \mysqli($host, $user, $pass);
-        if ($conn->connect_error) {
-            $this->flashMessage("Connection failed: " . $conn->connect_error, "alert-danger");
+        if ($this->database->isConnected()) {
+            $this->flashMessage("Connection to MySQL server has failed.", "alert-danger");
         } else {
             $this->flashMessage("Connected to MySQL server successfully!", "alert-success");
         }      
