@@ -18,6 +18,8 @@ services:
       - db
     networks:
       - internal_network
+    volumes:
+      - .:/var/www/html
 
   db:
     image: mariadb:10.3.29
