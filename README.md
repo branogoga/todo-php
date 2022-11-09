@@ -1,4 +1,4 @@
-# TODO List [![Build status](https://app.travis-ci.com/branogoga/todo-php.svg?branch=main)](https://app.travis-ci.com/github/branogoga/todo-php)
+# TODO List [![TravisCI Build](https://app.travis-ci.com/branogoga/todo-php.svg?branch=main)](https://app.travis-ci.com/github/branogoga/todo-php) [![GitHub Actions Build](https://github.com/branogoga/todo-hp/actions/workflows/main/badge.svg)](https://github.com/branogoga/todo-php/actions)
 
 Template of simple PHP web application running in Apache.
 
