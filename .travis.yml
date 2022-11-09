@@ -6,4 +6,4 @@ install:
   - composer install
 script:
   - vendor/bin/phpstan analyse app www --level 9
-  - phpunit .
+  - vendor/bin/phpunit .
