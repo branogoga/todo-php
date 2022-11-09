@@ -1,4 +1,4 @@
-# Dockerized PHP application in Apache [![Build status](https://app.travis-ci.com/branogoga/todo-php.svg?branch=main)](https://app.travis-ci.com/github/branogoga/todo-php)
+# TODO List [![Build status](https://app.travis-ci.com/branogoga/todo-php.svg?branch=main)](https://app.travis-ci.com/github/branogoga/todo-php)
 
 Template of simple PHP web application running in Apache.
 
