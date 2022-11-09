@@ -41,3 +41,7 @@ Ports and DB password can be found / changed in `.env` file.
 
 ### Automated tests
 `docker-compose exec -w /var/www/html server vendor/bin/phpunit .`
+
+## Test Cases
+
+**TODO**
