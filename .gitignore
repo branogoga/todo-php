@@ -1,2 +1,4 @@
+log/*
+temp/*
 vendor
 composer.lock
