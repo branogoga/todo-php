@@ -44,4 +44,35 @@ Ports and DB password can be found / changed in `.env` file.
 
 ## Test Cases
 
-**TODO**
+### Prerequisity
+- Application is up and running. Open homepage e.g. `localhost:8081`.
+
+### 1. Show list of tasks
+- Open homepage
+- There is a list of tasks shown
+- Check the DB table `tasks`, verify shown data match the DB records. In task row from left to right is shown date of creation, title, time of completion or button to complete if not completed, edit button
+
+### 2. Add new task
+- On the homepage click on the `New task` button. Form with new task data appears
+- Fill in the title of new task
+- Submit the form
+- Check, that list of task is shown
+- Check, that new task is added to the list of tasks
+- Check that new task is not complete (_there is no completion date, but `Complete` button is shown instead_)
+- Check that time of creation is current time
+
+### 3. Edit task
+- On the homepage click on the `Edit` button in the task row. Form with new task data appears.
+- Check, that title field is filled with task title.
+- Change the task title.
+- Submit form.
+- Check, that title was changed.
+- Check, that date of creation nor state of completness was not affected (_repeat test case for completed and not completed task_)
+
+### 4. Complete the task
+- On the homepage find unfinished task, click `Complete` to mark it as complete.
+- Check, that task is marked as completed - there is current completion time sow instead of `Complete` button
+
+### TODO: 
+- Security - SQL injection, CQRS
+- Entering invalid values to URLs, e.g. edit & complete task id
