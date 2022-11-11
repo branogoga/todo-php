@@ -1,3 +1,25 @@
 {block content}
-    <h1>Tasks</h1>
+    <div class="d-flex">
+        <h1 class="flex-grow-1">Tasks</h1>
+        <a href="#" class="btn btn-success">New task</a>
+    </div>
+
+    {if count($tasks)>0}
+        <ul class="list-group">
+            {foreach $tasks as $task}
+            <li class="list-group-item d-flex">
+                <span class="badge bg-secondary rounded-pill">{$task[\App\Model\TaskTable::CREATED_AT]|date:'d.m.Y H:i:s'}</span>
+                <span class="ms-2 flex-grow-1">{$task[\App\Model\TaskTable::TITLE]}</span>
+                {if $task[\App\Model\TaskTable::COMPLETED_AT]}
+                    <span>{$task[\App\Model\TaskTable::COMPLETED_AT]|date:'d.m.Y H:i:s'}</span>
+                {else}
+                    <a href="#" class="btn btn-success">Complete</a>
+                {/if}
+                <a href="#" class="btn btn-primary ms-2">Edit</a>
+            </li>
+            {/foreach}
+        </ul>
+    {else}
+        <div class="alert alert-warning">No tasks.</div>
+    {/if}
 {/block}
