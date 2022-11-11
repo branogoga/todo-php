@@ -30,7 +30,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: PHP Static Analysys
-      run: vendor/bin/phpstan analyze app web --level 9
+      run: vendor/bin/phpstan analyze app web --level 8
 
     - name: PHP Unit
       run: vendor/bin/phpunit .

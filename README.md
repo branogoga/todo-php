@@ -37,7 +37,7 @@ Ports and DB password can be found / changed in `.env` file.
 - How to switch between dev & prod container
 
 ### Static analysis
-`docker-compose exec -w /var/www/html server vendor/bin/phpstan analyse app www --level 9`
+`docker-compose exec -w /var/www/html server vendor/bin/phpstan analyse app www --level 8`
 
 ### Automated tests
 `docker-compose exec -w /var/www/html server vendor/bin/phpunit .`

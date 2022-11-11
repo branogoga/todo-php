@@ -1,0 +1,1 @@
+{"version":1,"defects":{"TaskTest::testCreateTaskFromArray":4},"times":{"TaskTest::testCreateTaskFromArray":0.002,"TaskTest::testExportTaskToArray":0,"TaskTest::testCompleteSetsCompletionDateIfNotSetBefore":0,"TaskTest::testCompleteLetsCompletionDateUnchangedIfAlreadyCompleted":0}}
