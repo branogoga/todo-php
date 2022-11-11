@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace App\Presenters;
+
+use InvalidArgumentException;
 use Nette\Application\UI\Form;
 
 use Nette;
@@ -36,6 +38,9 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 		return $form;
 	}
 
+    /**
+     * @param mixed $data
+     */
 	public function addFormSucceeded(Form $form, $data): void
 	{
         $this->task_repository->insert((array)$data);
@@ -53,6 +58,9 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
     {
     }
 
+    /**
+     * @param mixed $data
+     */
 	public function editFormSucceeded(Form $form, $data): void
 	{
         // TODO: Verify task exists, check permissions, ...
@@ -64,6 +72,9 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
     public function actionEdit(int $id):  void
     {
         $task = $this->task_repository->get($id);
+        if($task === null) {
+            throw new \InvalidArgumentException("Unable to find task '$id'");
+        }
         $form = $this["taskForm"];
         $form->setDefaults($task);
 		$form->onSuccess[] = [$this, 'editFormSucceeded'];

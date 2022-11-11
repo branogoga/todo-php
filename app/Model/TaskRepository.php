@@ -21,7 +21,7 @@ interface TaskRepository {
     public function getAll(): array;
 
     /** @return array<mixed> */
-    public function get(int $id): array;
+    public function get(int $id): ?array;
 
     /**
      * @param array<mixed> $task
@@ -48,9 +48,13 @@ final class DatabaseTaskRepository implements TaskRepository
         return $this->database->query("SELECT * FROM ".\App\Model\TaskTable::TABLE_NAME." ORDER BY ".\App\Model\TaskTable::CREATED_AT)->fetchAll();        
     }
 
-    public function get(int $id): array
+    public function get(int $id): ?array
     {
-        return $this->database->query("SELECT * FROM ".\App\Model\TaskTable::TABLE_NAME." WHERE ".\App\Model\TaskTable::ID." = %i", $id)->fetch()->toArray();
+        $result = $this->database->query("SELECT * FROM ".\App\Model\TaskTable::TABLE_NAME." WHERE ".\App\Model\TaskTable::ID." = %i", $id)->fetch();
+        if($result instanceof \Dibi\Row) {
+            $result = $result->toArray();
+        }
+        return $result;
     }
 
     public function insert(array $task): void 
