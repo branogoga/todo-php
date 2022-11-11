@@ -5,13 +5,13 @@ extensions:
 	dibi: Dibi\Bridges\Nette\DibiExtension22
 
 dibi:
-	host: localhost
+	host: db
 	username: app_user
 	password: t3rceS
 	database: todo
 	lazy: true
 
 database:
-	dsn: 'mysql:host=127.0.0.1;dbname=todo'
+	dsn: 'mysql:host=db;dbname=todo'
 	user: app_user
 	password: t3rceS
