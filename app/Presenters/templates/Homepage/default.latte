@@ -13,7 +13,7 @@
                 {if $task[\App\Model\TaskTable::COMPLETED_AT]}
                     <span>{$task[\App\Model\TaskTable::COMPLETED_AT]|date:'d.m.Y H:i:s'}</span>
                 {else}
-                    <a href="#" class="btn btn-success">Complete</a>
+                    <a href="{plink Homepage:complete $task[\App\Model\TaskTable::ID]}" class="btn btn-success">Complete</a>
                 {/if}
                 <a href="{plink Homepage:edit $task[\App\Model\TaskTable::ID]}" class="btn btn-primary ms-2">Edit</a>
             </li>

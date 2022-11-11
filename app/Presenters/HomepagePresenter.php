@@ -83,4 +83,16 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
     public function renderEdit(int $id): void
     {
     }
+
+    public function actionComplete(int $id): void 
+    {
+        $task = $this->task_repository->get($id);
+        if($task === null) {
+            throw new \InvalidArgumentException("Unable to find task '$id'");
+        }
+        $task[\App\Model\TaskTable::COMPLETED_AT] = date("Y-m-d H:i:s"); // TODO: Extract date() to TimeService in order to be able to mock it!
+        $this->task_repository->update($task);
+        $this->flashMessage('Task was completed.', 'alert-success');
+        $this->redirect("Homepage:");
+    }
 }
