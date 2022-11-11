@@ -28,22 +28,48 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 	protected function createComponentTaskForm(): Form
 	{
 		$form = new Form;
-		$form->addText('task_title', 'Title:')            
+		$form->addHidden(\App\Model\TaskTable::ID);
+		$form->addText(\App\Model\TaskTable::TITLE, 'Title:')            
             ->setRequired('Enter title')
             ->addRule($form::MIN_LENGTH, 'Title must be at least %d characters long', 3);
 		$form->addSubmit('send', 'Submit');
-		$form->onSuccess[] = [$this, 'formSucceeded'];
 		return $form;
 	}
 
-	public function formSucceeded(Form $form, $data): void
+	public function addFormSucceeded(Form $form, $data): void
 	{
-        $this->task_repository->add((array)$data);
-        $this->flashMessage('Task was submitted.', 'alert-success');
+        $this->task_repository->insert((array)$data);
+        $this->flashMessage('Task was added.', 'alert-success');
         $this->redirect('Homepage:');
 	}
 
+    public function actionAdd(): void
+    {        
+        $form = $this["taskForm"];
+		$form->onSuccess[] = [$this, 'addFormSucceeded'];
+    }
+
     public function renderAdd(): void
+    {
+    }
+
+	public function editFormSucceeded(Form $form, $data): void
+	{
+        // TODO: Verify task exists, check permissions, ...
+        $this->task_repository->update((array)$data);
+        $this->flashMessage('Task was updated.', 'alert-success');
+        $this->redirect('Homepage:');
+	}
+
+    public function actionEdit(int $id):  void
+    {
+        $task = $this->task_repository->get($id);
+        $form = $this["taskForm"];
+        $form->setDefaults($task);
+		$form->onSuccess[] = [$this, 'editFormSucceeded'];
+    }
+
+    public function renderEdit(int $id): void
     {
     }
 }
