@@ -7,6 +7,7 @@ RUN apt-get install -y libxml2-dev
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN docker-php-ext-install zip && docker-php-ext-enable zip
 RUN docker-php-ext-install dom && docker-php-ext-enable dom
+RUN a2enmod rewrite
 
 # Change Apache document root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/www
@@ -29,3 +30,4 @@ RUN composer install
 
 # TODO: Overrides the /var/www/html. User must install dependencies manually.
 VOLUME /var/www/html 
+VOLUME /etc/apache2/sites-available
