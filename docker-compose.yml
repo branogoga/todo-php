@@ -19,7 +19,7 @@ services:
     networks:
       - internal_network
     volumes:
-      - .:/var/www/html
+      # - .:/var/www/html
       - .docker/apache2/sites-available:/etc/apache2/sites-available
 
   db:
