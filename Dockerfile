@@ -28,6 +28,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer config --no-plugins allow-plugins.phpstan/extension-installer true
 RUN composer install
 
-# TODO: Overrides the /var/www/html. User must install dependencies manually.
-VOLUME /var/www/html 
+# VOLUME /var/www/html # Overrides the /var/www/html. User must install dependencies manually. 
 VOLUME /etc/apache2/sites-available
